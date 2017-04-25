@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Created by trina2 on 4/25/17.
  */
-public class Method1EntireListofBooks {
+public class Trina {
 
     public static void main(String[] args) {
         Book book1= new Book("Cinderella", "Disney", "None");
