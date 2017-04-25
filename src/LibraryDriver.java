@@ -36,6 +36,7 @@ public class LibraryDriver {
 
         System.out.println ("Test - Peter");
         System.out.println ("last time - Peter - after Sean's changes");
+        System.out.println("This is Sean's 3rd change");
 
         Scanner scan = new Scanner(System.in);
         int selection = scan.nextInt();
