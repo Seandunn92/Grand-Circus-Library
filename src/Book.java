@@ -4,9 +4,11 @@
 public class Book {
     private String title;
     private String author;
-    private enum  STATUS{ONSHELF, CHECKEDOUT};
+    public enum  STATUS{ONSHELF, CHECKEDOUT};
     private String dueDate;
-    STATUS bookStatus = STATUS.ONSHELF;
+    private STATUS bookStatus = STATUS.ONSHELF;
+
+
 
     @Override
     public String toString() {
