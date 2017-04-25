@@ -31,9 +31,6 @@ public class LibraryDriver {
         
         Scanner scan = new Scanner(System.in);
         int selection = scan.nextInt();
-
-
-
     }
 
 }
