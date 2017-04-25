@@ -26,24 +26,7 @@ public class LibraryDriver {
         System.out.println("3 - Search for a book by title keyword.");
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
-
-        System.out.println("This is Trina");
-        System.out.println ("Peter");
-        System.out.println("Hi Peter this is Trina");
-
-
-        System.out.println("Hi this is Sean Again");
-
-        System.out.println ("Test - Peter");
-        System.out.println ("last time - Peter - after Sean's changes");
-        System.out.println("This is Sean's 3rd change");
-        System.out.println("yo yo yo whats the dealio");
-
-        System.out.println("This is Sean's 4th line");
-
-        System.out.println("This is Sean's 4th line");
-
-        System.out.println("thdjfjkwfh-trina");
+        
 
         Scanner scan = new Scanner(System.in);
         int selection = scan.nextInt();
