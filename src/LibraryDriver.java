@@ -38,6 +38,8 @@ public class LibraryDriver {
         System.out.println ("last time - Peter - after Sean's changes");
         System.out.println("This is Sean's 3rd change");
 
+        System.out.println("This is Sean's 4th line");
+
         Scanner scan = new Scanner(System.in);
         int selection = scan.nextInt();
     }
