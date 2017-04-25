@@ -30,6 +30,8 @@ public class LibraryDriver {
         System.out.println("This is Trina");
         System.out.println ("Peter");
         System.out.println("Hi Peter this is Trina");
+        System.out.println ("Test - Peter");
+
         Scanner scan = new Scanner(System.in);
         int selection = scan.nextInt();
     }
