@@ -10,13 +10,26 @@ public class BookListFunctions {
 
 
     static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
-        boolean found =false;
+
         System.out.println("Enter the author's name");
         String author = scan.nextLine();
+
+
+        searchByString(bookList, author, false);
+    }
+
+    private static void searchByString(ArrayList<Book> bookList, String keyword, boolean searchByTitle) {
+        boolean found =false;
+        String desiredMatch="";
         for (Book temp : bookList) {
-            if (temp.getAuthor ().equals ( author )) {
+            if (searchByTitle)
+                desiredMatch = temp.getTitle();
+            else
+                desiredMatch = temp.getAuthor();
+            if (desiredMatch.equalsIgnoreCase ( keyword )) {
                 found = true;
                 System.out.println ( temp );
+
             }
         }
         if(!found)
@@ -27,15 +40,7 @@ public class BookListFunctions {
     static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
         System.out.println("Enter in the book's title");
         String title = scan.nextLine();
-        boolean found = false;
-        for (Book temp : bookList) {
-            if (temp.getTitle ().equals ( title )) {
-                System.out.println ( temp );
-                found = true;
-            }
-        }
-        if (!found)
-            System.out.println("Did not  find the book");
+        searchByString(bookList, title, true);
     }
 
     public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
