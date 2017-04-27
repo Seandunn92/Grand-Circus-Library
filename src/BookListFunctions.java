@@ -9,18 +9,39 @@ import java.util.Scanner;
 public class BookListFunctions {
 
 
-    static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
+    public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
+
+        for (int i=0; i<bookList.size(); i++) {
+            Book b = bookList.get(i);
+            System.out.println("Book " + (i+1) + ": " +b);
+        }
+
+    }
+
+    //Method to search book by title
+    static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
+        System.out.println("Enter in the book's title");
+        String title = scan.nextLine();
+        searchByString(bookList, title, true, scan);
+    }
+
+  public  static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
 
         System.out.println("Enter the author's name");
         String author = scan.nextLine();
 
 
-        searchByString(bookList, author, false);
+        searchByString(bookList, author, false,scan);
     }
 
-    private static void searchByString(ArrayList<Book> bookList, String keyword, boolean searchByTitle) {
+
+
+
+
+    private static void searchByString(ArrayList<Book> bookList, String keyword, boolean searchByTitle, Scanner scan) {
         boolean found =false;
         String desiredMatch="";
+        char userChar='g';
         for (Book temp : bookList) {
             if (searchByTitle)
                 desiredMatch = temp.getTitle();
@@ -29,27 +50,19 @@ public class BookListFunctions {
             if (desiredMatch.equalsIgnoreCase ( keyword )) {
                 found = true;
                 System.out.println ( temp );
+                if (temp.getBookStatus()!= Book.STATUS.CHECKEDOUT) {
+                    System.out.println("Would you like to check out this book (y/n)?");
+                    userChar = scan.nextLine().charAt(0);
+                    if (userChar == 'y' || userChar == 'Y') {
+                        CheckOutBook(temp);
+                    }
+                }
+
 
             }
         }
         if(!found)
             System.out.println("Did not find the book");
-    }
-
-    //Method to search book by title
-    static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
-        System.out.println("Enter in the book's title");
-        String title = scan.nextLine();
-        searchByString(bookList, title, true);
-    }
-
-    public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
-
-        for (int i=0; i<bookList.size(); i++) {
-            Book b = bookList.get(i);
-            System.out.println("Book " + (i+1) + ": " +b);
-        }
-
     }
 
 
@@ -77,8 +90,13 @@ public class BookListFunctions {
 
 
     }
+    public static void ReturnBook(Book bookWanted){
+        bookWanted.setBookStatus(Book.STATUS.ONSHELF);
+        System.out.println("Thank You for returning " + bookWanted.getTitle());
 
-    public static void upDateDate(Book bookWanted) {
+    }
+
+    private static void upDateDate(Book bookWanted) {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.DATE, 14);
@@ -88,9 +106,5 @@ public class BookListFunctions {
        bookWanted.setDueDate(output);
     }
 
-    public static void ReturnBook(Book bookWanted){
-        bookWanted.setBookStatus(Book.STATUS.ONSHELF);
-        System.out.println("Thank You for returning " + bookWanted.getTitle());
 
-    }
 }
