@@ -2,6 +2,7 @@
  * Created by seandunn92 on 4/25/17.
  */
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -139,6 +140,25 @@ public class BookListFunctions {
         bookWanted.setBookStatus(Book.STATUS.ONSHELF);
         System.out.println("Thank You for returning " + bookWanted.getTitle());
 
+
+    }
+
+    public static void RemoveBookFromInventory(ArrayList<Book> bookList, Scanner scan){
+        System.out.println("Please enter the book number that needs to be deleted");
+        int index = scan.nextInt()-1;
+        bookList.remove(index);
+        System.out.println("New Inventory List:");
+        displayBooks(bookList);
+
+    }
+
+    public static void AddBookTotheArray(ArrayList<Book> bookList, Scanner scan){
+        System.out.println("What is the title?");
+        String title = scan.nextLine();
+        System.out.println("What is the author");
+        String author = scan.nextLine();
+
+        bookList.add(new Book(title, author));
 
     }
 

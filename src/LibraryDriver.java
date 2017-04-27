@@ -10,10 +10,13 @@ public class LibraryDriver {
        Scanner scan = new Scanner(System.in);
 
         ArrayList<Book> bookList = new ArrayList<Book>();
+
+        //osjo was a garbage file for testing
 //        FileFunctions.createFile("osjo.txt");
 //       FileFunctions.readFromFile("osjo.txt",bookList);
         FileFunctions.createFile("bookList.txt");
-        FileFunctions.writeToFile(bookList, "bookList.txt");
+        FileFunctions.readFromFile("bookList.txt", bookList);
+
        if (bookList.isEmpty()){
            BookListFunctions.defBookList(bookList);
        }
@@ -33,7 +36,8 @@ public class LibraryDriver {
             System.out.println();
         }while (true);
 
-       // FileFunctions.createFile("bookList.txt");
+
+
         FileFunctions.writeToFile(bookList, "bookList.txt");
 
 
@@ -48,6 +52,8 @@ public class LibraryDriver {
         System.out.println("3 - Search for a book by title keyword.");
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
+        System.out.println("6 - Remove a Book from Inventory (ADMIN ONLY!!)");
+        System.out.println("7 - Add a Book to Inventory");
         System.out.println("0- quit and save");
     }
 
@@ -73,6 +79,8 @@ public class LibraryDriver {
                 currBook = BookListFunctions.SelectBook(bookList, scan);
                 BookListFunctions.ReturnBook(currBook);
                 break;
+            case 6: BookListFunctions.RemoveBookFromInventory(bookList, scan); break;
+            case 7: BookListFunctions.AddBookTotheArray(bookList, scan);
             default:
                 System.out.println("Error");
         }
