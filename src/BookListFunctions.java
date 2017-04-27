@@ -75,6 +75,7 @@ public class BookListFunctions {
             }
         }
         if (!found) System.out.println ( "Did not  find the book" );
+    }
 
     private static void searchByString(ArrayList <Book> bookList, String keyword, boolean searchByTitle) {
         boolean found = false;
