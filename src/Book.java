@@ -17,13 +17,20 @@ public class Book {
         return title + "," + author + "," + dueDate + "," + bookStatus;
     }
 
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        this.dueDate = "None";
+        bookStatus = STATUS.ONSHELF;
+    }
+
     public Book(String title, String author, String dueDate) {
         this.title = title;
         this.author = author;
         this.dueDate = dueDate;
         bookStatus = STATUS.ONSHELF;
-
     }
+
     public Book(String title, String author, String dueDate, String bookStatus) {
         this.title = title;
         this.author = author;

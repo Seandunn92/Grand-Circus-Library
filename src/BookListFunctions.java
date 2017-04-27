@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class BookListFunctions {
 
-    //Initialize ArrayList
+    //Initialise ArrayList
     ArrayList <Book> bookList = new ArrayList <Book> ();
 
     //Void method containing 12 books that will be stored in ArrayList<Book> if original txt file is empty
