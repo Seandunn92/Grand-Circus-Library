@@ -53,7 +53,8 @@ public class LibraryDriver {
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
         System.out.println("6 - Remove a Book from Inventory (ADMIN ONLY!!)");
-        System.out.println("7 - Add a Book to Inventory");
+        System.out.println("7 - Add a Book to Inventory (ADMIN ONLY!!");
+        System.out.println("8:  Reinitialize the BookList (ADMIN ONLY!!)");
         System.out.println("0- quit and save");
     }
 
@@ -80,7 +81,9 @@ public class LibraryDriver {
                 BookListFunctions.ReturnBook(currBook);
                 break;
             case 6: BookListFunctions.RemoveBookFromInventory(bookList, scan); break;
-            case 7: BookListFunctions.AddBookTotheArray(bookList, scan);
+            case 7: BookListFunctions.AddBookTotheArray(bookList, scan); break;
+            case 8: bookList.clear();
+                    BookListFunctions.defBookList(bookList); break;
             default:
                 System.out.println("Error");
         }

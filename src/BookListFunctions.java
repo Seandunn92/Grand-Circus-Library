@@ -19,6 +19,7 @@ public class BookListFunctions {
     public static void defBookList(ArrayList <Book> bookList) {
         bookList.add ( new Book ( "The Java Handbook",
                 "Patrick Naughton, Michael Morrison" ) );
+        System.out.println("flamingo");
         bookList.add ( new Book ( "Concurrent Programming in Java: Design Principles and Patterns",
                 "Doug Lea" ) );
         bookList.add ( new Book ( "The Java Virtual Machine Specification",
