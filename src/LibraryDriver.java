@@ -10,7 +10,14 @@ public class LibraryDriver {
        Scanner scan = new Scanner(System.in);
 
         ArrayList<Book> bookList = new ArrayList<Book>();
-       FileFunctions.readFromFile("bookList.txt",bookList);
+//        FileFunctions.createFile("osjo.txt");
+//       FileFunctions.readFromFile("osjo.txt",bookList);
+        FileFunctions.createFile("bookList.txt");
+        FileFunctions.writeToFile(bookList, "bookList.txt");
+       if (bookList.isEmpty()){
+           BookListFunctions.defBookList(bookList);
+       }
+
 
 
         do {

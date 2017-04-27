@@ -1,4 +1,0 @@
-Title1|Sean the Great|none|ONSHELF
-Title2|Author2|none|ONSHELF
-Title3|Trina|none|CHECKEDOUT
-Title4|Author4|none|ONSHELF
