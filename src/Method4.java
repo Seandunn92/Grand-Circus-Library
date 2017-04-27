@@ -25,6 +25,8 @@ public class Method4 {
         bookList.add(new Book("Harry Potter", "JK Rowling", "Today"));
         System.out.println(bookList);
 
+
+
         do {
             System.out.println("Welcome to Grand Circus Library");
             System.out.println("Please select from the following options:");
@@ -36,23 +38,7 @@ public class Method4 {
             selection = scan.nextInt();
             scan.nextLine();
 
-            switch (selection) {
-                case 1:
-                    Trina.displayBooks(bookList);
-                    break;
-                case 2:
-                    Search.searchBookByAuthor(bookList, scan);
-                    break;
-                case 3:
-                    Search.searchBookByTitle(bookList, scan);
-                    break;
-                case 4:
-                    currBook = Method4.SelectBook(bookList, scan);
-                    Method4.CheckOutBook(currBook);
-                    break;
-                default:
-                    System.out.println("Error");
-            }
+            PerfomActionBasedOnInput(selection, scan, bookList);
             System.out.println();
         }while (true);
 //        Scanner scan = new Scanner(System.in);
@@ -65,12 +51,39 @@ public class Method4 {
 
     }
 
+    public static void PerfomActionBasedOnInput(int selection, Scanner scan, ArrayList<Book> bookList) {
+        Book currBook;
+        switch (selection) {
+            case 1:
+                Trina.displayBooks(bookList);
+                break;
+            case 2:
+                Search.searchBookByAuthor(bookList, scan);
+                break;
+            case 3:
+                Search.searchBookByTitle(bookList, scan);
+                break;
+            case 4:
+                System.out.println("Please enter the book number you would like to check out");
+                currBook = Method4.SelectBook(bookList, scan);
+                Method4.CheckOutBook(currBook);
+                break;
+            case 5:
+                System.out.println("Please enter the book number you would like to return");
+                currBook = Method4.SelectBook(bookList, scan);
+                Method4.ReturnBook(currBook);
+                break;
+            default:
+                System.out.println("Error");
+        }
+    }
+
 
     public static Book SelectBook(ArrayList<Book> bookList, Scanner scan){
         int bookSel;
         //the book returned to user;
         Book retBook =null;
-        System.out.println("Please enter the book number you would like to check out");
+
         do {
             bookSel = scan.nextInt();
         }while (bookSel<1 || bookSel>bookList.size());
@@ -84,8 +97,13 @@ public class Method4 {
         }
         else{
             bookWanted.setBookStatus(Book.STATUS.CHECKEDOUT);
-            System.out.println("We have checked the book out to you! Due in 2 weeks");
+            System.out.println("We have checked " + bookWanted.getTitle() +" to you! Due in 2 weeks");
         }
+
+    }
+    public static void ReturnBook(Book bookWanted){
+        bookWanted.setBookStatus(Book.STATUS.ONSHELF);
+        System.out.println("Thank You for returning " + bookWanted.getTitle());
 
     }
 }

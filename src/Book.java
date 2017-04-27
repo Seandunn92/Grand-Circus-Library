@@ -4,20 +4,17 @@
 public class Book {
     private String title;
     private String author;
-    public enum  STATUS{ONSHELF, CHECKEDOUT};
+
+    public enum STATUS {ONSHELF, CHECKEDOUT}
+
+    ;
     private String dueDate;
     private STATUS bookStatus = STATUS.ONSHELF;
 
 
-
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", dueDate='" + dueDate + '\'' +
-                ", bookStatus=" + bookStatus +
-                '}';
+        return title + "," + author + "," + dueDate + "," + bookStatus;
     }
 
     public Book(String title, String author, String dueDate) {
