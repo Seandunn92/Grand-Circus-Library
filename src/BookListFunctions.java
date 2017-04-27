@@ -42,18 +42,26 @@ public class BookListFunctions {
     }
 
     //Void method to search book by Author
+//    public static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
+//        System.out.println ( "Enter the author's name" );
+//        String author = scan.nextLine ();
+//
+//        searchByString ( bookList, author, false );
+//    }
+//        //Method to search book by title
+//    public static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
+//        System.out.println("Enter in the book's title");
+//        String title = scan.nextLine();
+//        searchByString(bookList, title, true);
+//    }
+
+    //Void method to search book by Author
     public static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
         boolean found = false;
         System.out.println ( "Enter the author's name" );
         String author = scan.nextLine ();
-        for (Book temp : bookList) {
-            if (temp.getAuthor ().equals ( author )) {
-                found = true;
-                System.out.println ( temp );
-            }
-        }
-        if (!found) System.out.println ( "Did not find the book" );
     }
+
 
     //Void method to search book by Title
     public static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
@@ -67,6 +75,21 @@ public class BookListFunctions {
             }
         }
         if (!found) System.out.println ( "Did not  find the book" );
+
+    private static void searchByString(ArrayList <Book> bookList, String keyword, boolean searchByTitle) {
+        boolean found = false;
+        String desiredMatch = "";
+        for (Book temp : bookList) {
+            if (searchByTitle)
+                desiredMatch = temp.getTitle ();
+            else
+                desiredMatch = temp.getAuthor ();
+            if (desiredMatch.equalsIgnoreCase ( keyword )) {
+                found = true;
+                System.out.println ( temp );
+            }
+        }
+        if (!found) System.out.println ( "Did not find the book" );
     }
 
     //Void method to display all books
@@ -97,7 +120,7 @@ public class BookListFunctions {
             return;
         } else {
             bookWanted.setBookStatus ( Book.STATUS.CHECKEDOUT );
-            UpdateDueDate( bookWanted );
+            UpdateDueDate ( bookWanted );
             System.out.println ( "We have checked " + bookWanted.getTitle () + " to you! Due " + bookWanted.getDueDate () );
         }
     }
