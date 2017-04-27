@@ -28,6 +28,7 @@ public class Trina {
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
 
+
         displayBooks(bookList); //passing in bookList method
 
         Scanner scan = new Scanner(System.in);
@@ -38,8 +39,9 @@ public class Trina {
 
     public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
 
-        for (Book b : bookList) {
-            System.out.println(b);
+        for (int i=0; i<bookList.size(); i++) {
+            Book b = bookList.get(i);
+            System.out.println("Book " + (i+1) + ": " +b);
         }
 
     }

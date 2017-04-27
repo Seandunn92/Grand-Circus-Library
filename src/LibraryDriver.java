@@ -6,19 +6,32 @@ import java.util.Scanner;
 
 public class LibraryDriver {
     public static void main(String[] args) {
-        Book book1= new Book("Cinderella", "Disney", "None");
-        System.out.println(book1.getTitle()  +", " + book1.getBookStatus() + ", " + book1.getDueDate());
-        System.out.println(book1);
-        Book book2 = new Book ("Snow White", "Edgar Alan Poe", "None");
-        System.out.println(book2);
-        System.out.println();
+       int selection;
+       Scanner scan = new Scanner(System.in);
 
         ArrayList<Book> bookList = new ArrayList<Book>();
-        bookList.add(new Book ("Snow White2", "Edgar", "None"));
-       // System.out.println(bookList.get(0));
+       FileFunctions.readFromFile("test.txt",bookList);
 
-        bookList.add(new Book("Harry Potter", "JK Rowling", "Today"));
-        System.out.println(bookList);
+
+        do {
+            promptUser();
+            selection = scan.nextInt();
+            scan.nextLine();
+
+            //0 is the number we told the user would allow them to quit
+            if(selection==0)
+                break;
+
+            PerfomActionBasedOnInput(selection, scan, bookList);
+            System.out.println();
+        }while (true);
+
+        FileFunctions.writeToFile(bookList);
+
+
+    }
+
+    public static void promptUser() {
         System.out.println("Welcome to Grand Circus Library");
         System.out.println("Please select from the following options:");
         System.out.println("1 - Display the entire list of books.");
@@ -26,10 +39,34 @@ public class LibraryDriver {
         System.out.println("3 - Search for a book by title keyword.");
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
-        
+        System.out.println("0- quit and save");
+    }
 
-        Scanner scan = new Scanner(System.in);
-        int selection = scan.nextInt();
+    public static void PerfomActionBasedOnInput(int selection, Scanner scan, ArrayList<Book> bookList) {
+        Book currBook;
+        switch (selection) {
+            case 1:
+                BookListFunctions.displayBooks(bookList);
+                break;
+            case 2:
+                BookListFunctions.searchBookByAuthor(bookList, scan);
+                break;
+            case 3:
+                BookListFunctions.searchBookByTitle(bookList, scan);
+                break;
+            case 4:
+                System.out.println("Please enter the book number you would like to check out");
+                currBook = BookListFunctions.SelectBook(bookList, scan);
+                BookListFunctions.CheckOutBook(currBook);
+                break;
+            case 5:
+                System.out.println("Please enter the book number you would like to return");
+                currBook = BookListFunctions.SelectBook(bookList, scan);
+                BookListFunctions.ReturnBook(currBook);
+                break;
+            default:
+                System.out.println("Error");
+        }
     }
 
 }

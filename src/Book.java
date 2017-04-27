@@ -24,6 +24,16 @@ public class Book {
         bookStatus = STATUS.ONSHELF;
 
     }
+    public Book(String title, String author, String dueDate, String bookStatus) {
+        this.title = title;
+        this.author = author;
+        this.dueDate = dueDate;
+        if(bookStatus.equals("CHECKEDOUT"))
+            this.bookStatus= STATUS.CHECKEDOUT;
+        else
+        this.bookStatus = STATUS.ONSHELF;
+
+    }
 
     public String getTitle() {
         return title;
