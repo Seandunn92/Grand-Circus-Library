@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -28,23 +31,44 @@ public class Trina {
         System.out.println("4 - Select a book to check out.");
         System.out.println("5 - Return a book.");
 
-
         displayBooks(bookList); //passing in bookList method
 
         Scanner scan = new Scanner(System.in);
-        int selection = scan.nextInt();
+        int selection = 4;
+
+        if (selection == 4) {
+            displayBooks(bookList);
+            System.out.println("Please select a book to check out: ");
+            int select = scan.nextInt();
+            //System.out.println (bookList.get ( scan.nextInt() ));
+
+            if(true)
+            System.out.println (bookList.get ( 1).getBookStatus().compareTo(Book.STATUS.CHECKEDOUT));
+
+
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.DATE, 14);
+
+            SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+            String output = sdf.format(c.getTime());
+            System.out.println("This is our value " + output);
+
+            bookList.get(select).setDueDate (output);
+            bookList.get(select).setBookStatus ( Book.STATUS.CHECKEDOUT );
+            System.out.println("You have checked out: " + bookList.get ( select ));
+
+        }
     }
 
 //write method to print arrayList "Books". Method that doesn't return anything but prints out list
 
     public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
 
-        for (int i=0; i<bookList.size(); i++) {
-            Book b = bookList.get(i);
-            System.out.println("Book " + (i+1) + ": " +b);
+        for (Book b : bookList) {
+            System.out.println(b);
         }
 
     }
-
 
 }

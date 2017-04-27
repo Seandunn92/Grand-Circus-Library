@@ -1,7 +1,10 @@
 /**
  * Created by seandunn92 on 4/25/17.
  */
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 public class BookListFunctions {
 
@@ -63,10 +66,23 @@ public class BookListFunctions {
         }
         else{
             bookWanted.setBookStatus(Book.STATUS.CHECKEDOUT);
-            System.out.println("We have checked " + bookWanted.getTitle() +" to you! Due in 2 weeks");
+            upDateDate(bookWanted);
+            System.out.println("We have checked " + bookWanted.getTitle() +" to you! Due " + bookWanted.getDueDate());
         }
 
+
     }
+
+    public static void upDateDate(Book bookWanted) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, 14);
+
+        SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+        String output = sdf.format(c.getTime());
+       bookWanted.setDueDate(output);
+    }
+
     public static void ReturnBook(Book bookWanted){
         bookWanted.setBookStatus(Book.STATUS.ONSHELF);
         System.out.println("Thank You for returning " + bookWanted.getTitle());

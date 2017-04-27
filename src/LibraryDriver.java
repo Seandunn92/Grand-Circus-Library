@@ -10,7 +10,7 @@ public class LibraryDriver {
        Scanner scan = new Scanner(System.in);
 
         ArrayList<Book> bookList = new ArrayList<Book>();
-       FileFunctions.readFromFile("test.txt",bookList);
+       FileFunctions.readFromFile("bookList.txt",bookList);
 
 
         do {
@@ -26,7 +26,9 @@ public class LibraryDriver {
             System.out.println();
         }while (true);
 
-        FileFunctions.writeToFile(bookList);
+       // FileFunctions.createFile("bookList.txt");
+        FileFunctions.writeToFile(bookList, "bookList.txt");
+
 
 
     }

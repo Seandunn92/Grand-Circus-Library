@@ -10,40 +10,7 @@ import java.util.Scanner;
  * Created by PAS8 on 4/25/2017.
  */
 public class FileFunctions {
-    public static void main(String[] args) {
 
-        ArrayList <Book> bookList = new ArrayList <Book> ();
-//       bookList.add ( new Book ( "Title1", "Author1", "None" ) );
-//        bookList.add ( new Book ( "Title2", "Author2", "None" ) );
-//       bookList.add ( new Book ( "Title3", "Author3", "None" ) );
-//        bookList.add ( new Book ( "Title4", "Author4", "None" ) );
-//        bookList.add ( new Book ( "Title5", "Author5", "None" ) );
-//        bookList.add ( new Book ( "Title6", "Author6", "None" ) );
-//        bookList.add ( new Book ( "Title7", "Author7", "None" ) );
-//        bookList.add ( new Book ( "Title8", "Author8", "None" ) );
-//        bookList.add ( new Book ( "Title9", "Author9", "None" ) );
-//        bookList.add ( new Book ( "Title10", "Author10", "None" ) );
-//
-
-        readFromFile("test.txt",bookList);
-
-        Trina.displayBooks(bookList);
-
-//        System.out.println ("Before");
-//        System.out.println (bookList.get ( 2 ));
-//
-//        bookList.get(2).setBookStatus ( Book.STATUS.CHECKEDOUT );
-//        bookList.get(2).setAuthor ( "Trina" );
-
-//        System.out.println ("After");
-//        System.out.println (bookList.get ( 2));
-        bookList.get(0).setAuthor("Sean the Great");
-
-        writeToFile ( bookList );
-
-        //Ensure file exist or create one
-        //createFile ( "test.txt" );
-    }
 
     //Create file method
     static void createFile(String fileString) {
@@ -79,13 +46,11 @@ public class FileFunctions {
             BufferedReader bufferedReader = new BufferedReader ( fileReader );
             try {
                 //Read line by line
-                //ArrayList<Book> bookArrayList = new ArrayList <> (  );
+
                 while ((line = bufferedReader.readLine ()) != null) {
+                    //split the string into readable parts
                     String[] information = line.split("\\|");
-                    //System.out.println (information[0]);
-                    //System.out.println (information[1]);
-                    //System.out.println (information[2]);
-                    System.out.println (information[3]);
+
                     bookList.add (new Book(information[0], information[1], information[2], information[3]));
                     //System.out.println ("bookList = " + bookList);
                 }
@@ -102,9 +67,9 @@ public class FileFunctions {
     }
 
     //Write to file
-    static void writeToFile(ArrayList <Book> bookList) {
+    static void writeToFile(ArrayList <Book> bookList, String ourFileName) {
         //Reference filename and pate
-        Path filePath = Paths.get ( "test.txt" );
+        Path filePath = Paths.get ( ourFileName );
         File fileName = filePath.toFile ();
 
         try {
