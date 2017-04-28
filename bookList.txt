@@ -1,0 +1,12 @@
+The Java Handbook|Patrick Naughton, Michael Morrison|None|ONSHELF
+Concurrent Programming in Java: Design Principles and Patterns|Doug Lea|None|ONSHELF
+The Java Virtual Machine Specification|Tim Lindholm, Frank Yellin, Bill Joy, Kathy Walrath|None|ONSHELF
+Java in a Nutshell: A Desktop Quick Reference for Java Programmers|David Flanagan|None|ONSHELF
+The Java AWT Reference|John Zukowski|None|ONSHELF
+The Java Language Specification|James Gosling , Bill Joy, Guy Steele|None|ONSHELF
+Thinking in Java|Bruce Eckel|None|ONSHELF
+Who's Afraid of Java?|Steve Heller|None|ONSHELF
+The Java Programming Language, 2nd Edition|Ken Arnold, James Gosling|None|ONSHELF
+Core Java 1.2: Volume 1 Fundamentals|Gary Cornell, Cay Horstmann|None|ONSHELF
+The Java Class Libraries: An Annotated Reference|Patrick Chan, Rosanna Lee|None|ONSHELF
+Teach Yourself Java 1.1 Programming in 24 Hours|Rogers Cadenhead|None|ONSHELF
