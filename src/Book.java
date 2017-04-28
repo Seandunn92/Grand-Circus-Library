@@ -4,12 +4,10 @@
 public class Book {
     private String title;
     private String author;
-
-    public enum STATUS {ONSHELF, CHECKEDOUT};
+    public enum STATUS {ONSHELF, CHECKEDOUT}
 
     private String dueDate;
     private STATUS bookStatus = STATUS.ONSHELF;
-
 
     @Override
     public String toString() {
@@ -37,8 +35,7 @@ public class Book {
         if(bookStatus.equals("CHECKEDOUT"))
             this.bookStatus= STATUS.CHECKEDOUT;
         else
-        this.bookStatus = STATUS.ONSHELF;
-
+            this.bookStatus = STATUS.ONSHELF;
     }
 
     public String getTitle() {

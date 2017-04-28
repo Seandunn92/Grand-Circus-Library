@@ -11,11 +11,10 @@ import java.util.Scanner;
  */
 public class FileFunctions {
 
-
     //Create file method
     static void createFile(String fileString) {
         Path filePath = Paths.get ( fileString );
-        System.out.println ( filePath );
+        File fileName = filePath.toFile ();
 
         if (Files.notExists ( filePath )) {
             System.out.println ( Files.notExists ( filePath ) );
@@ -30,7 +29,6 @@ public class FileFunctions {
 
     //Read from file
     public static void readFromFile(String fileString, ArrayList <Book> bookList) {
-
         //Reference filename and pate
         Path filePath = Paths.get ( fileString );
         File fileName = filePath.toFile ();
@@ -49,9 +47,9 @@ public class FileFunctions {
 
                 while ((line = bufferedReader.readLine ()) != null) {
                     //split the string into readable parts
-                    String[] information = line.split("\\|");
+                    String[] information = line.split ( "\\|" );
 
-                    bookList.add (new Book(information[0], information[1], information[2], information[3]));
+                    bookList.add ( new Book ( information[0], information[1], information[2], information[3] ) );
                     //System.out.println ("bookList = " + bookList);
                 }
                 // Always close files.
@@ -85,9 +83,9 @@ public class FileFunctions {
                 bufferedWriter.write ( temp.getTitle () + "|" );
                 bufferedWriter.write ( temp.getAuthor () + "|" );
                 bufferedWriter.write ( temp.getDueDate () + "|" );
-                bufferedWriter.write ( String.valueOf(temp.getBookStatus ()) );
+                bufferedWriter.write ( String.valueOf ( temp.getBookStatus () ) );
                 bufferedWriter.newLine ();
-            };
+            }
             System.out.println ( "The bookList has been saved!" );
 
             // Always close files.

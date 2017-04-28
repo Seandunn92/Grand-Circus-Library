@@ -11,15 +11,10 @@ import java.util.Scanner;
 
 public class BookListFunctions {
 
-
-    //Initialise ArrayList
-    // ArrayList <Book> bookList = new ArrayList <Book> ();
-
     //Void method containing 12 books that will be stored in ArrayList<Book> if original txt file is empty
     public static void defBookList(ArrayList <Book> bookList) {
         bookList.add ( new Book ( "The Java Handbook",
                 "Patrick Naughton, Michael Morrison" ) );
-        System.out.println("flamingo");
         bookList.add ( new Book ( "Concurrent Programming in Java: Design Principles and Patterns",
                 "Doug Lea" ) );
         bookList.add ( new Book ( "The Java Virtual Machine Specification",
@@ -44,77 +39,60 @@ public class BookListFunctions {
                 "Rogers Cadenhead" ) );
     }
 
-
     public static void displayBooks(ArrayList <Book> bookList) { //taking in arraylist from library driver as param
-
-        for (int i=0; i<bookList.size(); i++) {
-            Book b = bookList.get(i);
-            System.out.println("Book " + (i+1) + ": " +b);
+        System.out.println ("Here are the list of books : ");
+        for (int i = 0; i < bookList.size (); i++) {
+            Book b = bookList.get ( i );
+            System.out.println ( "Book " + (i + 1) + " - Status : " + b.getBookStatus ()
+                    + " - Due Date : " + b.getDueDate ());
+            System.out.println ( "Title : " + b.getTitle () );
+            System.out.println ( "Author : " + b.getAuthor () );
+            System.out.println ("----------------------------------------------------------------------------");
         }
-
     }
 
     //Method to search book by title
-    static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
-        System.out.println("Enter in the book's title");
-        String title = scan.nextLine();
-        searchByString(bookList, title, true, scan);
+    public static void searchBookByTitle(ArrayList <Book> bookList, Scanner scan) {
+        System.out.println ( "Enter in the book's title : " );
+        String title = scan.nextLine ();
+        searchByString ( bookList, title, true, scan );
     }
-
-
 
     //Void method to search book by Author
     public static void searchBookByAuthor(ArrayList <Book> bookList, Scanner scan) {
         boolean found = false;
-        System.out.println ( "Enter the author's name" );
+        System.out.println ( "Enter the author's name : " );
         String author = scan.nextLine ();
-
-
-
-
-        searchByString(bookList, author, false,scan);
+        searchByString ( bookList, author, false, scan );
     }
 
-
-
-
-
-    private static void searchByString(ArrayList<Book> bookList, String keyword, boolean searchByTitle, Scanner scan) {
-        boolean found =false;
-        String desiredMatch="";
-        char userChar='g';
-
+    private static void searchByString(ArrayList <Book> bookList, String keyword, boolean searchByTitle, Scanner scan) {
+        boolean found = false;
+        String desiredMatch = "";
+        char userChar = 'g';
 
         for (Book temp : bookList) {
             if (searchByTitle)
-                desiredMatch = temp.getTitle ().toLowerCase();
+                desiredMatch = temp.getTitle ().toLowerCase ();
             else
-                desiredMatch = temp.getAuthor ().toLowerCase();
-            if (desiredMatch.contains ( keyword.toLowerCase() )) {
+                desiredMatch = temp.getAuthor ().toLowerCase ();
+            if (desiredMatch.contains ( keyword.toLowerCase () )) {
                 found = true;
                 System.out.println ( temp );
-                if (temp.getBookStatus()!= Book.STATUS.CHECKEDOUT) {
-                    System.out.println("Would you like to check out this book (y/n)?");
-                    userChar = scan.nextLine().charAt(0);
+                if (temp.getBookStatus () != Book.STATUS.CHECKEDOUT) {
+                    System.out.println ( "Would you like to check out this book (y/n)?" );
+                    userChar = scan.nextLine ().charAt ( 0 );
                     if (userChar == 'y' || userChar == 'Y') {
-                        CheckOutBook(temp);
+                        CheckOutBook ( temp );
                     }
                 }
-
-
-
             }
         }
-        if (!found) System.out.println ( "Did not find the book" );
+        if (!found) System.out.println ( "Did not find the book." );
     }
-
-
-
-
 
     //Void method to select book
     public static Book SelectBook(ArrayList <Book> bookList, Scanner scan) {
-
         int bookSel;
         //the book returned to user;
         Book retBook = null;
@@ -129,52 +107,50 @@ public class BookListFunctions {
     //Void method to check out book (update STATUS to CHECKEDOUT).
     public static void CheckOutBook(Book bookWanted) {
         if (bookWanted.getBookStatus () == Book.STATUS.CHECKEDOUT) {
-            System.out.println ( "Sorry that book was already checked out" );
+            System.out.println ( "Sorry \"" + bookWanted.getTitle () + "\" by \"" + bookWanted.getAuthor () + "\" was already checked out." );
             return;
         } else {
-            bookWanted.setBookStatus ( Book.STATUS.CHECKEDOUT );
             updateDueDate ( bookWanted );
-            System.out.println ( "We have checked " + bookWanted.getTitle () + " to you! Due " + bookWanted.getDueDate () );
+            bookWanted.setBookStatus ( Book.STATUS.CHECKEDOUT );
+            System.out.println ( "You have checked \"" + bookWanted.getTitle () + "\" by \"" + bookWanted.getAuthor () + "." +
+                    "The due date is " + bookWanted.getDueDate () + ".");
         }
     }
-    public static void ReturnBook(Book bookWanted){
-        bookWanted.setBookStatus(Book.STATUS.ONSHELF);
-        System.out.println("Thank You for returning " + bookWanted.getTitle());
 
-
+    public static void ReturnBook(Book bookWanted) {
+        if (bookWanted.getBookStatus () == Book.STATUS.ONSHELF) {
+            System.out.println ( "\"" + bookWanted.getTitle () + "\" by \"" + bookWanted.getAuthor () + "\" is not checked out." );
+            return;
+        } else {
+            bookWanted.setBookStatus ( Book.STATUS.ONSHELF );
+            System.out.println ( "Thank you for returning \"" + bookWanted.getTitle () + "\" by \"" + bookWanted.getAuthor () + "\"." );
+        }
     }
 
-    public static void RemoveBookFromInventory(ArrayList<Book> bookList, Scanner scan){
-        System.out.println("Please enter the book number that needs to be deleted");
-        int index = scan.nextInt()-1;
-        bookList.remove(index);
-        System.out.println("New Inventory List:");
-        displayBooks(bookList);
-
+    public static void RemoveBookFromInventory(ArrayList <Book> bookList, Scanner scan) {
+        System.out.println ( "Please enter the book number that needs to be deleted : " );
+        int index = scan.nextInt () - 1;
+        bookList.remove ( index );
+        System.out.println ( "New Inventory List :" );
+        displayBooks ( bookList );
     }
 
-    public static void AddBookTotheArray(ArrayList<Book> bookList, Scanner scan){
-        System.out.println("What is the title?");
-        String title = scan.nextLine();
-        System.out.println("What is the author");
-        String author = scan.nextLine();
+    public static void AddBookTotheArray(ArrayList <Book> bookList, Scanner scan) {
+        System.out.println ( "What is the title?" );
+        String title = scan.nextLine ();
+        System.out.println ( "What is the author" );
+        String author = scan.nextLine ();
 
-        bookList.add(new Book(title, author));
-
+        bookList.add ( new Book ( title, author ) );
     }
 
     private static void updateDueDate(Book bookWanted) {
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.DATE, 14);
+        Calendar c = Calendar.getInstance ();
+        c.setTime ( new Date () );
+        c.add ( Calendar.DATE, 14 );
 
-        SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
-        String output = sdf.format(c.getTime());
-       bookWanted.setDueDate(output);
+        SimpleDateFormat sdf = new SimpleDateFormat ( "MM/dd/yyyy" );
+        String output = sdf.format ( c.getTime () );
+        bookWanted.setDueDate ( output );
     }
-
-
 }
-
-
-
